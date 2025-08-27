@@ -1,0 +1,32 @@
+# Telegram Bot Dependencies
+# Core bot framework
+pyrogram>=2.0.0
+# Cloudinary SDK for media management
+cloudinary>=1.7.0
+
+# HTTP requests for API calls
+requests>=2.28.0
+
+# Required for pyrogram
+TgCrypto>=1.2.0
+
+# URL parsing and validation
+urllib3>=1.26.0
+
+# Progress bars for file operations
+tqdm>=4.64.0
+
+# YouTube downloader
+yt-dlp>=2024.4.9
+
+ffmpeg
+
+#removebg
+rembg>=2.0.67
+onnxruntime
+
+# Additional dependencies that might be useful
+# (uncomment if needed)
+python-dotenv>=0.19.0  # For environment variables
+# aiofiles>=0.8.0       # For async file operations
+# pillow>=9.0.0          # For image processing
