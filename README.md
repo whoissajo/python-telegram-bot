@@ -1,6 +1,6 @@
 # 🤖 Advanced Telegram Bot
 
-A powerful Telegram bot with AI chat, image generation, file management, and media platform integrations.
+A ver powerful Telegram bot with AI chat, image generation, file management, and media platform integrations.
 
 ## ✨ Features
 
