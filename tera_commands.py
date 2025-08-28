@@ -55,7 +55,7 @@ def register_tera_commands(app: Client):
         url = message.command[1]
         await message.reply_text("🔄 Processing your request...")
 
-        api_url = f"https://di.iltr.workers.dev/?url={url}"
+        api_url = f"https://terabox-worker.robinkumarshakya103.workers.dev/api?url={url}"
         download_url = get_download_url(api_url)
 
         if not download_url:
@@ -74,4 +74,5 @@ def register_tera_commands(app: Client):
             await message.reply_document(document=open(file_name, 'rb'))
             os.remove(file_name)
         except Exception as e:
+
             await message.reply_text(f"⚠️ Error: {str(e)}")
