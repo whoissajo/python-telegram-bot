@@ -1,5 +1,3 @@
-# tera_commands.py
-
 from pyrogram import Client, filters
 from pyrogram.types import Message
 import requests
@@ -11,7 +9,13 @@ def get_download_url(api_url):
         response = requests.get(api_url)
         response.raise_for_status()
         data = response.json()
-        return data.get('download_url')
+        print("API response:", data)  # Debug print
+
+        # Check if 'files' exists and contains at least one element
+        if "files" in data and len(data["files"]) > 0:
+            return data["files"][0].get("download_url")  # Get the download URL
+        else:
+            return None
     except Exception as e:
         print(f"Error fetching API response: {e}")
         return None
@@ -23,10 +27,11 @@ def download_file(download_url, file_name):
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
             "AppleWebKit/537.36 (KHTML, like Gecko) "
             "Chrome/115.0.0.0 Safari/537.36"
-        )
+        ),
+        "Referer": "https://terabox-worker.robinkumarshakya103.workers.dev/",
     }
     with requests.get(download_url, headers=headers, stream=True) as r:
-        r.raise_for_status()
+        r.raise_for_status()  # This will raise an error if the status code is not 200
         with open(file_name, 'wb') as f:
             for chunk in r.iter_content(chunk_size=8192): 
                 if chunk:
@@ -62,7 +67,7 @@ def register_tera_commands(app: Client):
             await message.reply_text("❌ Failed to retrieve download URL.")
             return
 
-        # Debug print
+        # Debug print for download_url
         print(f"Download URL: {download_url}")
 
         file_name = sanitize_file_name(download_url.split("/")[-1])
@@ -71,8 +76,8 @@ def register_tera_commands(app: Client):
             await message.reply_text("⬇️ Downloading file...")
             download_file(download_url, file_name)
 
+            # Send file after downloading
             await message.reply_document(document=open(file_name, 'rb'))
             os.remove(file_name)
         except Exception as e:
-
             await message.reply_text(f"⚠️ Error: {str(e)}")
