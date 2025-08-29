@@ -4,7 +4,7 @@ from pyrogram import Client
 from pyrogram.errors import RPCError
 
 # Replace this with your actual admin Telegram user ID
-ADMIN_USER_ID = 5222080011
+ADMIN_USER_ID = os.getenv("ADMIN_ID")
 
 
 async def notify_admin_on_startup(app: Client):

@@ -20,13 +20,13 @@ def show_progress(client, message: Message):
         progress_bar = f"[{filled_blocks}{empty_blocks}] {step}%"
         
         # Update the Telegram message with the current progress
-        message.edit(f"Progress: {progress_bar}")
+        message.edit(f"Progress.... {progress_bar}")
         
         # Simulate some work being done (this will make the bar take ~5 seconds)
         time.sleep(0.05)
 
     # Once the progress is complete, finalize the message
-    message.edit("Progress completed!")
+    message.edit("Progress completed..!")
 
 def register_progress(app: Client):
     @app.on_message(filters.command("pr"))
